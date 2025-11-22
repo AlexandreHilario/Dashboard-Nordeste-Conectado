@@ -118,8 +118,7 @@ export const metricsService = {
       SELECT COUNT(*) AS total
       FROM escola e
       JOIN infraestrutura_rede ir ON e.id_infraestrutura_rede = ir.id
-      WHERE e.tp_localizacao = 2
-        AND ir.tp_rede_local = TRUE
+      WHERE ir.tp_rede_local = TRUE
         AND ir.in_banda_larga = FALSE
     `;
 
@@ -129,8 +128,7 @@ export const metricsService = {
       SELECT COUNT(*) AS total
       FROM escola e
       JOIN infraestrutura_rede ir ON e.id_infraestrutura_rede = ir.id
-      WHERE e.tp_localizacao = 2
-        AND ir.tp_rede_local = TRUE
+      WHERE ir.tp_rede_local = TRUE
     `;
     
       const totalRuraisSemBandaLarga: any = await prisma.$queryRaw<
@@ -139,8 +137,7 @@ export const metricsService = {
       SELECT COUNT(*) AS total
       FROM escola e
       JOIN infraestrutura_rede ir ON e.id_infraestrutura_rede = ir.id
-      WHERE e.tp_localizacao = 2
-        AND ir.in_banda_larga = FALSE
+      WHERE ir.in_banda_larga = FALSE
     `;
     return {
       rurais_com_rede_local_sem_banda_larga: Number(totalRuraisComRedeLocalSemBandaLarga[0].total),
